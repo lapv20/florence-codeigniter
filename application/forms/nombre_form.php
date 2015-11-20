@@ -6,6 +6,7 @@ $form = array(
  );
 
 $nombre = array(
+    'class' => 'form-control',
     'name'  => 'nombre',
     'id'    => 'nombre',
     'value' => '',
@@ -13,12 +14,14 @@ $nombre = array(
     'placeholder' => 'Primer Nombre'
  );
 $apellido = array(
+    'class' => 'form-control',
     'name'  => 'apellido',
     'id'    => 'apellido',
     'value' => '',
     'placeholder' => 'Primer Apellido'
  );
 $telefono = array(
+    'class' => 'form-control',
     'name'  => 'telefono',
     'id'    => 'telefono',
     'value' => '',
@@ -30,10 +33,13 @@ $reset = array(
     'name' => 'reset',
     'type' => 'reset',
     'value' => 'Limpiar Formulario',
+    'class' => 'btn btn-default',
+    'role' => 'button'
  );
 $submit = array(
     'name' => 'submit',
     'type' => 'submit',
     'value' => 'Agregar Nombre',
+    'class' => 'btn btn-primary'
      );
 ?>

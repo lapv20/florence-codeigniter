@@ -17,10 +17,9 @@ class Signup extends CI_Controller {
     public function agregar()
     {
         /* Aqui se colocan las validaciones del formulario */
-        $this->form_validation->set_rules('nombre', 'nombre persona', 'required');
-        $this->form_validation->set_rules('apellido', 'apellido persona', 'required');
-        $this->form_validation->set_rules('telefono', 'telefono persona', 'required');
-        $this->form_validation->set_rules('telefono', 'telefono', 'numeric');
+        $this->form_validation->set_rules('nombre', 'nombre', 'required');
+        $this->form_validation->set_rules('apellido', 'apellido', 'required');
+        $this->form_validation->set_rules('telefono', 'telefono', 'required|numeric');
 
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('signup');

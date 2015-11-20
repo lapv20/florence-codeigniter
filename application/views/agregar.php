@@ -3,21 +3,27 @@
 ?>
 <body>
     <?php if (isset($mensajes) && $mensajes) { echo "<div class='alert alert-danger' role='alert'>".$mensajes."</div>"; } ?>
-    <?php echo validation_errors(); ?>
+    <?php //echo validation_errors(); ?>
     
-    <?php echo form_open("/Signup/agregar", $form); ?>
-    <table class="table" width="63%" cellpadding="7" cellspacing="10">
+    <?php echo form_open("signup/agregar", $form); ?>
+    <table class="table table-bordered" width="63%" cellpadding="7" cellspacing="10">
         <tr>
             <td width="33%">Nombre</td>
-            <td width="66%"><?php echo form_input($nombre); ?></td>
+            <td width="66%"><?php 
+                echo form_error('nombre', '<p class="text-danger">', '</p>');
+                echo form_input($nombre); ?></td>
         </tr>
         <tr>
             <td width="33%">Apellido</td>
-            <td width="66%"><?php echo form_input($apellido); ?></td>
+            <td width="66%"><?php 
+                echo form_error('apellido', '<p class="text-danger">', '</p>'); 
+                echo form_input($apellido); ?></td>
         </tr>
         <tr>
             <td width="33%">Telefono</td>
-            <td width="66%"><?php echo form_input($telefono); ?></td>
+            <td width="66%"><?php 
+                echo form_error('telefono', '<p class="text-danger">', '</p>');
+                echo form_input($telefono); ?></td>
         </tr>
         <tr>
             <td width="50%"><?php echo form_reset($reset); ?></td>

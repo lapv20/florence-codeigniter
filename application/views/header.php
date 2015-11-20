@@ -9,10 +9,8 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12 col-sm-12 col-xs-12">
-				<div class="well">
-					<center>
-						<h2>Agenda Telefonica</h2>
-					</center>
+				<div class="page-header">
+					<h2>Agenda Teléfonica</h2>
 				</div>
 			</div>
 		</div>
