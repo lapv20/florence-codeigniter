@@ -11,7 +11,7 @@
 			<div class="col-lg-12 col-sm-12 col-xs-12">
 				<div class="well">
 					<center>
-						<h2>Esta es la cabecera de la pagina</h2>
+						<h2>Agenda Telefonica</h2>
 					</center>
 				</div>
 			</div>
