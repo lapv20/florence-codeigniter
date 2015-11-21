@@ -9,7 +9,6 @@ $nombre = array(
     'class' => 'form-control',
     'name'  => 'nombre',
     'id'    => 'nombre',
-    'value' => '',
     'size'  => 30,
     'placeholder' => 'Primer Nombre'
  );
@@ -17,16 +16,20 @@ $apellido = array(
     'class' => 'form-control',
     'name'  => 'apellido',
     'id'    => 'apellido',
-    'value' => '',
     'placeholder' => 'Primer Apellido'
  );
 $telefono = array(
     'class' => 'form-control',
     'name'  => 'telefono',
     'id'    => 'telefono',
-    'value' => '',
     'size'  => 30,
     'placeholder' => '0000000000'
+ );
+$correo = array(
+    'class' => 'form-control',
+    'name'  => 'correo',
+    'id'    => 'correo',
+    'placeholder' => 'example@gmail.com'
  );
 
 $reset = array(
@@ -39,7 +42,7 @@ $reset = array(
 $submit = array(
     'name' => 'submit',
     'type' => 'submit',
-    'value' => 'Agregar Nombre',
+    'value' => 'Agregar Nuevo Contacto',
     'class' => 'btn btn-primary'
      );
 ?>
