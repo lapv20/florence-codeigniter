@@ -10,21 +10,38 @@ class datos_model extends CI_Model
  
     public function agregar_datos($nombre, $apellido, $telefono, $mail)
     {
-        $sql = "INSERT INTO datos VALUES ('".$nombre."', '".$apellido."', '".$telefono."', '".$mail."')";
+        $sql = "INSERT INTO datos (nombre, apellido, telefono, correo) VALUES ('".$nombre."', '".$apellido."', '".$telefono."', '".$mail."')";
         $this->db->query($sql);
         return true;
     }
 
-    public function eliminar_contacto($telefono)
+    public function agregar_datos_editados($id, $nombre, $apellido, $telefono, $correo)
     {
-        $sql = "DELETE FROM datos WHERE telefono='".$telefono."'";
+        $sql = "UPDATE 
+                    datos 
+                SET 
+                    nombre = '".$nombre."', 
+                    apellido = '".$apellido."', 
+                    telefono = '".$telefono."', 
+                    correo = '".$correo."' 
+                WHERE 
+                    id = '".$id."'";
         $this->db->query($sql);
         return true;
     }
 
-    public function obtener_datos_contacto($telefono){
-        $sql = "SELECT * FROM datos WHERE telefono='".$telefono."'";
-        return $this->db->query($sql);
+    public function eliminar_contacto($id)
+    {
+        $sql = "DELETE FROM datos WHERE id='".$id."'";
+        $this->db->query($sql);
+        return true;
+    }
+
+    public function obtener_datos($id){
+        $sql = "SELECT * FROM datos WHERE id='".$id."'";
+        $rows = $this->db->query($sql);
+        $datos = $rows->result();
+        return $datos;
     }
 
     /* obtiene todos los registros de la que antes era la tabla

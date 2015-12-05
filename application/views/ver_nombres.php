@@ -21,8 +21,8 @@
                                 <td><?php echo $dato->telefono; ?></td>
                                 <td><?php echo $dato->correo; ?></td>
                                 <td>
-                                    <a class="btn btn-default" href="<?php echo base_url().'signup/eliminar/telefono/'.$dato->telefono; ?>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
-                                    <a class="btn btn-default" href="<?php echo base_url().'signup/editar/telefono/'.$dato->telefono; ?>"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
+                                    <a class="btn btn-default" href="<?php echo base_url().'signup/eliminar/contacto/'.$dato->id; ?>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+                                    <a class="btn btn-default" href="<?php echo base_url().'signup/editar/contacto/'.$dato->id; ?>"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
                                 </td>
                             </tr>
                         <?php } ?>

@@ -36,13 +36,26 @@ $reset = array(
     'name' => 'reset',
     'type' => 'reset',
     'value' => 'Limpiar Formulario',
-    'class' => 'btn btn-default',
+    'class' => 'btn btn-default btn-block',
     'role' => 'button'
  );
 $submit = array(
     'name' => 'submit',
     'type' => 'submit',
     'value' => 'Agregar Nuevo Contacto',
-    'class' => 'btn btn-primary'
+    'class' => 'btn btn-primary btn-block'
+     );
+
+// APARA EL EDIT
+$id = array(
+    'name' => 'id',
+    'type' => 'hidden'
+    );
+
+$submit_edit = array(
+    'name' => 'submit',
+    'type' => 'submit',
+    'value' => 'Guardar Modificaciones',
+    'class' => 'btn btn-success btn-block'
      );
 ?>

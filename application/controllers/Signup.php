@@ -53,18 +53,61 @@ class Signup extends CI_Controller {
     public function eliminar()
     {
         $url = $this->uri->uri_to_assoc();
-        //var_dump($url);
-
-        $telefono = $url['telefono'];
-        $this->datos_model->eliminar_contacto($telefono);
+        $id = $url['contacto'];
+        $this->datos_model->eliminar_contacto($id);
 
         redirect('/signup/ver_nombres');
     }
 
+    /**
+    Obtiene los datos para cargar en el formulario de editar y redirige al formulario
+    **/
     public function editar(){
         $url = $this->uri->uri_to_assoc();
-        $telefono = $url['telefono'];
-        $datos = $this->datos_model->obtener_datos_contacto($telefono);
+        $id = $url['contacto'];
+        $datos['datos'] = $this->datos_model->obtener_datos($id);
+
+        $this->load->view('editar_contacto', $datos);
+    }
+
+    /**
+    Obtiene los datos editados, los verifica y guarda en la base de datos
+    **/
+    public function editar_guardar()
+    {
+        $datos['datos'] = $this->datos_model->obtener_datos($this->input->post('id'));
+        $datos['datos'][0]->nombre = $this->input->post('nombre');
+        $datos['datos'][0]->apellido = $this->input->post('apellido');
+        $datos['datos'][0]->telefono = $this->input->post('telefono');
+        $datos['datos'][0]->correo = $this->input->post('correo');
+
+        /* Aqui se colocan las validaciones del formulario */
+        $this->form_validation->set_rules('nombre', 'Nombre', 'trim|required');
+        $this->form_validation->set_rules('apellido', 'Apellido', 'trim|required');
+        $this->form_validation->set_rules('telefono', 'Telefono', 'trim|required|numeric');
+        $this->form_validation->set_rules('correo', 'Email', 'trim');
+        /* trim para remover data benigna */
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('editar_contacto', $datos);
+        }else{
+            /* Obteniendo los datos del formulario */
+            $id = $this->input->post('id');
+            $nombre = $this->input->post('nombre');
+            $apellido = $this->input->post('apellido');
+            $telefono = $this->input->post('telefono');
+            $correo = $this->input->post('correo');
+
+            /* Pasando los datos del formulario al modelo para ingresarlos en la base de datos */
+            $varl = $this->datos_model->agregar_datos_editados($id, $nombre, $apellido, $telefono, $correo);
+
+            if ($varl) {
+                redirect('/signup/ver_nombres');
+            }else{
+                $datos['mensajes'] = "Ha ocurrido un inconveniente al procesar la información.";
+                $this->load->view('signup', $datos);
+            }
+        }
     }
 
     /** ** ** ** ** ** ** **
