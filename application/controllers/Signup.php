@@ -61,10 +61,12 @@ class Signup extends CI_Controller {
     }
 
     /*Para modificar los datos del contacto*/
-    public function editar(){
-        $url = $this->uri->uri_to_assoc();
-        if ($url['id'] == true) {
+    public function editar() {
+        echo $this->uri->total_segments();
+        if ($this->uri->total_segments() > 2 ) {
+            $url = $this->uri->uri_to_assoc();
             $id = $url['id'];
+        
             $datos['datos'] = $this->datos_model->obtener_datos_contacto($id);
             
             /* Aqui se colocan las validaciones del formulario */
@@ -94,6 +96,8 @@ class Signup extends CI_Controller {
                 }
             }
         }
+
+        redirect('/signup/ver_nombres');
     }
 
     /** ** ** ** ** ** ** **
