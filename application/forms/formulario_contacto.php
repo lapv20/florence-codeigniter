@@ -45,4 +45,10 @@ $submit = array(
     'value' => 'Agregar Nuevo Contacto',
     'class' => 'btn btn-primary'
      );
+$submit_editar = array(
+    'name' => 'submit',
+    'type' => 'submit',
+    'value' => 'Guardar Cambios',
+    'class' => 'btn btn-success'
+     );
 ?>

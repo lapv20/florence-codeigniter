@@ -10,21 +10,31 @@ class datos_model extends CI_Model
  
     public function agregar_datos($nombre, $apellido, $telefono, $mail)
     {
-        $sql = "INSERT INTO datos VALUES ('".$nombre."', '".$apellido."', '".$telefono."', '".$mail."')";
+        $sql = "INSERT INTO datos VALUES ('','".$nombre."', '".$apellido."', '".$telefono."', '".$mail."')";
         $this->db->query($sql);
         return true;
     }
 
-    public function eliminar_contacto($telefono)
+    /*Para el editar de contacto recibe los datos nuevos y remplaza la entrada en la base de datos*/
+    public function agregar_datos_modificados($nombre, $apellido, $telefono, $mail, $id)
     {
-        $sql = "DELETE FROM datos WHERE telefono='".$telefono."'";
+        $sql = "UPDATE 'datos' SET 'nombre'=".$nombre.",'apellido'=".$apellido.",'telefono'=".$telefono.",'correo'=".$mail." WHERE id='".$id."'";
         $this->db->query($sql);
         return true;
     }
 
-    public function obtener_datos_contacto($telefono){
-        $sql = "SELECT * FROM datos WHERE telefono='".$telefono."'";
-        return $this->db->query($sql);
+    public function eliminar_contacto($id)
+    {
+        $sql = "DELETE FROM datos WHERE id='".$id."'";
+        $this->db->query($sql);
+        return true;
+    }
+
+    public function obtener_datos_contacto($id){
+        $sql = "SELECT * FROM datos WHERE id='".$id."'";
+        $query = $this->db->query($sql);
+        $contacto = $query->result();
+        return $contacto;
     }
 
     /* obtiene todos los registros de la que antes era la tabla
@@ -55,7 +65,7 @@ class datos_model extends CI_Model
         $sql = "SELECT * FROM datos WHERE correo='".$mail."' LIMIT 1";
         $row = $this->db->query($sql);
 
-        if ($row->num_rows()==1) {
+        if ($row->num_rows() == 1) {
             return TRUE;
         }else{
             return FALSE;
