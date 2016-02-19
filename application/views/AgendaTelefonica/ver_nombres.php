@@ -6,6 +6,7 @@
         </ol>
         <div class="row">
             <div class="col-lg-12">
+            <?php if (isset($mensajes) && $mensajes) { echo "<div class='alert alert-danger' role='alert'>".$mensajes."</div>"; } ?>
                 <div class="table-responsive"><table class="table table-bordered">
                     <thead>
                         <tr>
@@ -25,13 +26,8 @@
                                 <td><?php echo $dato->telefono; ?></td>
                                 <td><?php echo $dato->correo; ?></td>
                                 <td>
-<<<<<<< HEAD:application/views/AgendaTelefonica/ver_nombres.php
                                     <a class="btn btn-default" href="<?php echo base_url().'signup/eliminar/id/'.$dato->id; ?>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
                                     <a class="btn btn-default" href="<?php echo base_url().'signup/editar/id/'.$dato->id; ?>"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
-=======
-                                    <a class="btn btn-default" href="<?php echo base_url().'signup/eliminar/contacto/'.$dato->id; ?>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
-                                    <a class="btn btn-default" href="<?php echo base_url().'signup/editar/contacto/'.$dato->id; ?>"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
->>>>>>> 26380e2f9578649530b001e87c489460744a6d61:application/views/ver_nombres.php
                                 </td>
                             </tr>
                         <?php }} ?>
