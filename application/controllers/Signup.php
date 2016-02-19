@@ -62,42 +62,47 @@ class Signup extends CI_Controller {
 
     /*Para modificar los datos del contacto*/
     public function editar() {
-        echo $this->uri->total_segments();
-        if ($this->uri->total_segments() > 2 ) {
-            $url = $this->uri->uri_to_assoc();
-            $id = $url['id'];
-        
+        $url = $this->uri->uri_to_assoc();
+        $id = $url['id'];
+
+        $datos['datos'] = $this->datos_model->obtener_datos_contacto($id);
+        $this->load->view('AgendaTelefonica/editar', $datos);
+    }
+
+    public function actualizarContacto()
+    {
+        /* Aqui se colocan las validaciones del formulario */
+        $this->form_validation->set_rules('nombre', 'Nombre', 'trim|required|callback_check_nombre');
+        $this->form_validation->set_rules('apellido', 'Apellido', 'trim|required|callback_check_nombre');
+        $this->form_validation->set_rules('telefono', 'Telefono', 'trim|required|numeric');
+        $this->form_validation->set_rules('correo', 'Email', 'trim|required');
+        /* trim para remover data benigna */
+
+        if ($this->form_validation->run() == FALSE) {
+            $id = $this->input->post('id');
             $datos['datos'] = $this->datos_model->obtener_datos_contacto($id);
-            
-            /* Aqui se colocan las validaciones del formulario */
-            $this->form_validation->set_rules('nombre', 'Nombre', 'trim|required|alpha');
-            $this->form_validation->set_rules('apellido', 'Apellido', 'trim|required|alpha');
-            $this->form_validation->set_rules('telefono', 'Telefono', 'trim|required|numeric|callback_check_telefono');
-            $this->form_validation->set_rules('correo', 'Email', 'trim|required|callback_check_email');
-            /* trim para remover data benigna */
+            $this->load->view('AgendaTelefonica/editar', $datos);
+        }else{
+            /* Obteniendo los datos del formulario */
+            $nombre = $this->input->post('nombre');
+            $apellido = $this->input->post('apellido');
+            $telefono = $this->input->post('telefono');
+            $correo = $this->input->post('correo');
+            $id = $this->input->post('id');
 
-            if ($this->form_validation->run() == FALSE) {
-                $this->load->view('AgendaTelefonica/editar', $datos);
+            /* Pasando los datos del formulario al modelo para ingresarlos en la base de datos */
+            $varl = $this->datos_model->agregar_datos_modificados($nombre, $apellido, $telefono, $correo, $id);
+
+            if ($varl) {
+                $datos['mensajes'] = "Actualización de la información exitosa.";
+                $datos['datos'] = $this->datos_model->obtener_nombres();
+                $this->load->view('AgendaTelefonica/ver_nombres', $datos);
             }else{
-                /* Obteniendo los datos del formulario */
-                $nombre = $this->input->post('nombre');
-                $apellido = $this->input->post('apellido');
-                $telefono = $this->input->post('telefono');
-                $correo = $this->input->post('correo');
-
-                /* Pasando los datos del formulario al modelo para ingresarlos en la base de datos */
-                $varl = $this->datos_model->agregar_datos_modificados($nombre, $apellido, $telefono, $correo, $id);
-
-                if ($varl) {
-                    redirect('/signup/ver_nombres');
-                }else{
-                    $datos['mensajes'] = "Ha ocurrido un inconveniente al procesar la información.";
-                    $this->load->view('AgendaTelefonica/editar/'.$id, $datos);
-                }
+                $datos['mensajes'] = "Ha ocurrido un inconveniente al procesar la información.";
+                $datos['datos'] = $this->datos_model->obtener_nombres();
+                $this->load->view('AgendaTelefonica/ver_nombres', $datos);
             }
         }
-
-        redirect('/signup/ver_nombres');
     }
 
     /** ** ** ** ** ** ** **
@@ -120,16 +125,19 @@ class Signup extends CI_Controller {
         return TRUE;
     }
 
-    function check_telefono($tel){
+    function check_telefono($tel)
+    {
         if ($this->datos_model->verificar_telefono($tel)) {
             $this->form_validation->set_message('check_telefono', 'El número ya existe en nuestros registros.');
             return FALSE;
         }
         return TRUE;
     }
-    function check_nombre($cadena){
+
+    function check_nombre($cadena)
+    {
         if(preg_match('/\d/',$cadena)){
-            $this->form_validation->set_message('check_nombre', 'El nombre no debe contener digitos.');
+            $this->form_validation->set_message('check_nombre', 'Este campo no debe contener digitos.');
             return FALSE;
         }
         return TRUE;

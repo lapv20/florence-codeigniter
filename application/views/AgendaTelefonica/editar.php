@@ -13,9 +13,12 @@
 					<li class="active"><?php echo $dato->nombre.' '.$dato->apellido; ?></li>
 				</ol>
 				<?php if (isset($mensajes) && $mensajes) { echo "<div class='alert alert-danger' role='alert'>".$mensajes."</div>"; } ?>
-			<?php //echo validation_errors(); ?>
-			
-			<?php echo form_open("signup/editar", $form); ?>
+				
+			<?php echo form_open("signup/actualizarContacto", $form); ?>
+			<?php 
+				$d = $dato->id;
+				echo form_input($id, $d);
+			?>
 			<table class="table">
 				<tr>
 					<th>Nombre</th>

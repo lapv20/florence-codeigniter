@@ -18,7 +18,7 @@ class datos_model extends CI_Model
     /*Para el editar de contacto recibe los datos nuevos y remplaza la entrada en la base de datos*/
     public function agregar_datos_modificados($nombre, $apellido, $telefono, $mail, $id)
     {
-        $sql = "UPDATE 'datos' SET 'nombre'=".$nombre.",'apellido'=".$apellido.",'telefono'=".$telefono.",'correo'=".$mail." WHERE id='".$id."'";
+        $sql = "UPDATE datos SET nombre='".$nombre."',apellido='".$apellido."',telefono='".$telefono."',correo='".$mail."' WHERE id='".$id."'";
 
         $this->db->query($sql);
         return true;
