@@ -41,6 +41,14 @@
 					?></td>
 				</tr>
 				<tr>
+					<th>Cédula de Identidad</th>
+					<td><?php 
+						$cd = set_value('cedula');
+						echo form_input($cedula, $cd); 
+						echo form_error('cedula', '<small><p class="text-danger">', '</p></small>');
+					?></td>
+				</tr>
+				<tr>
 					<th>Correo Electrónico</th>
 					<td><?php 
 						$c = set_value('correo');

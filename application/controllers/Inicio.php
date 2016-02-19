@@ -22,9 +22,4 @@ class Inicio extends CI_Controller {
 	{
 		$this->load->view('Inicio/principal');
 	}
-
-	public function asistencia()
-	{
-		$this->load->view('Inicio/asistencia');
-	}
 }

@@ -1,4 +1,5 @@
 <?php
+
 $form = array(
     'class' => 'form',
     'id' => 'fomulario',
@@ -12,12 +13,14 @@ $nombre = array(
     'size'  => 30,
     'placeholder' => 'Primer Nombre'
  );
+
 $apellido = array(
     'class' => 'form-control',
     'name'  => 'apellido',
     'id'    => 'apellido',
     'placeholder' => 'Primer Apellido'
  );
+
 $telefono = array(
     'class' => 'form-control',
     'name'  => 'telefono',
@@ -25,6 +28,14 @@ $telefono = array(
     'size'  => 30,
     'placeholder' => '0000000000'
  );
+
+$cedula = array(
+    'class' => 'form-control',
+    'name'  => 'cedula',
+    'id'    => 'cedula',
+    'placeholder' => '00000000'
+ );
+
 $correo = array(
     'class' => 'form-control',
     'name'  => 'correo',
@@ -36,33 +47,21 @@ $reset = array(
     'name' => 'reset',
     'type' => 'reset',
     'value' => 'Limpiar Formulario',
-    'class' => 'btn btn-default btn-block',
+    'class' => 'btn btn-default',
     'role' => 'button'
  );
+
 $submit = array(
     'name' => 'submit',
     'type' => 'submit',
     'value' => 'Agregar Nuevo Contacto',
-    'class' => 'btn btn-primary btn-block'
-     );
+    'class' => 'btn btn-primary'
+);
 
 // APARA EL EDIT
 $id = array(
     'name' => 'id',
     'type' => 'hidden'
-    );
+);
 
-$submit_edit = array(
-    'name' => 'submit',
-    'type' => 'submit',
-    'value' => 'Guardar Modificaciones',
-    'class' => 'btn btn-success btn-block'
-     );
-
-$submit_editar = array(
-    'name' => 'submit',
-    'type' => 'submit',
-    'value' => 'Guardar Cambios',
-    'class' => 'btn btn-success'
-     );
 ?>

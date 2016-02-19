@@ -40,7 +40,8 @@
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Asistencia <span class="caret"></span></a>
 							<ul class="dropdown-menu">
-								<li><a href="<?php echo base_url().'inicio/asistencia'; ?>">Agregar Asistencia</a></li>
+								<li><a href="<?php echo base_url().'asistencia/agregar'; ?>">Agregar Asistencia</a></li>
+								<li><a href="<?php echo base_url().'asistencia/verAsistencias'; ?>">Ver Lista de Asistencia</a></li>
 							</ul>
 						</li>
 					</ul>

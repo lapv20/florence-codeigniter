@@ -31,9 +31,10 @@ class Signup extends CI_Controller {
             $apellido = $this->input->post('apellido');
             $telefono = $this->input->post('telefono');
             $correo = $this->input->post('correo');
+            $cedula = $this->input->post('cedula');
 
             /* Pasando los datos del formulario al modelo para ingresarlos en la base de datos */
-            $varl = $this->datos_model->agregar_datos($nombre, $apellido, $telefono, $correo);
+            $varl = $this->datos_model->agregar_datos($nombre, $apellido, $telefono, $cedula, $correo);
 
             if ($varl) {
                 $datos['mensajes'] = "Contacto agregado con exito.";
@@ -53,18 +54,14 @@ class Signup extends CI_Controller {
 
     public function eliminar()
     {
-        $url = $this->uri->uri_to_assoc();
-        $id = $url['id'];
+        $id = $this->input->post('id');
         $this->datos_model->eliminar_contacto($id);
-        
         redirect('/signup/ver_nombres');
     }
 
     /*Para modificar los datos del contacto*/
     public function editar() {
-        $url = $this->uri->uri_to_assoc();
-        $id = $url['id'];
-
+        $id = $this->input->post('id');
         $datos['datos'] = $this->datos_model->obtener_datos_contacto($id);
         $this->load->view('AgendaTelefonica/editar', $datos);
     }
@@ -88,19 +85,18 @@ class Signup extends CI_Controller {
             $apellido = $this->input->post('apellido');
             $telefono = $this->input->post('telefono');
             $correo = $this->input->post('correo');
+            $cedula = $this->input->post('cedula');
             $id = $this->input->post('id');
 
             /* Pasando los datos del formulario al modelo para ingresarlos en la base de datos */
-            $varl = $this->datos_model->agregar_datos_modificados($nombre, $apellido, $telefono, $correo, $id);
+            $varl = $this->datos_model->agregar_datos_modificados($nombre, $apellido, $telefono, $cedula, $correo, $id);
 
             if ($varl) {
                 $datos['mensajes'] = "Actualización de la información exitosa.";
-                $datos['datos'] = $this->datos_model->obtener_nombres();
-                $this->load->view('AgendaTelefonica/ver_nombres', $datos);
+                redirect('signup/ver_nombres');
             }else{
                 $datos['mensajes'] = "Ha ocurrido un inconveniente al procesar la información.";
-                $datos['datos'] = $this->datos_model->obtener_nombres();
-                $this->load->view('AgendaTelefonica/ver_nombres', $datos);
+                redirect('signup/ver_nombres');
             }
         }
     }

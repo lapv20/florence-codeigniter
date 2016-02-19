@@ -46,6 +46,14 @@
 					?></td>
 				</tr>
 				<tr>
+					<th>Cédula de Identidad</th>
+					<td><?php 
+						$cd = set_value('cedula');
+						echo form_input($cedula, $cd); 
+						echo form_error('cedula', '<small><p class="text-danger">', '</p></small>');
+					?></td>
+				</tr>
+				<tr>
 					<th>Correo Electrónico</th>
 					<td><?php 
 						$c = $dato->correo;
@@ -54,7 +62,10 @@
 					?></td>
 				</tr>
 			</table>
-			<?php echo form_submit($submit_editar); ?><a class="btn btn-danger" href="<?php echo base_url().'signup/eliminar/id/'.$dato->id; ?>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Eliminar a <?php echo $dato->nombre; ?></a>
+
+			<button class="btn btn-success" type="submit"><span class="glyphicon glyphicon-save" aria-hidden="true"></span> Guardar Cambios</button>
+
+			<a class="btn btn-danger" href="<?php echo base_url().'signup/eliminar/id/'.$dato->id; ?>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Eliminar a <?php echo $dato->nombre; ?></a>
 			<?php } ?>
 		</div>
 	</div>

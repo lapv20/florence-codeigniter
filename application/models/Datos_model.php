@@ -2,23 +2,22 @@
 
 class datos_model extends CI_Model
 {
-
     public function __construct()
     {
         parent::__construct();
     }
  
-    public function agregar_datos($nombre, $apellido, $telefono, $mail)
+    public function agregar_datos($nombre, $apellido, $telefono, $cedula ,$mail)
     {
-        $sql = "INSERT INTO datos VALUES ('','".$nombre."', '".$apellido."', '".$telefono."', '".$mail."')";
+        $sql = "INSERT INTO datos VALUES ('','".$nombre."', '".$apellido."', '".$telefono."','".$cedula."','".$mail."')";
         $this->db->query($sql);
         return true;
     }
 
     /*Para el editar de contacto recibe los datos nuevos y remplaza la entrada en la base de datos*/
-    public function agregar_datos_modificados($nombre, $apellido, $telefono, $mail, $id)
+    public function agregar_datos_modificados($nombre, $apellido, $telefono, $cedula, $mail, $id)
     {
-        $sql = "UPDATE datos SET nombre='".$nombre."',apellido='".$apellido."',telefono='".$telefono."',correo='".$mail."' WHERE id='".$id."'";
+        $sql = "UPDATE datos SET nombre='".$nombre."',apellido='".$apellido."',cedula='".$cedula."', telefono='".$telefono."',correo='".$mail."' WHERE id='".$id."'";
 
         $this->db->query($sql);
         return true;
