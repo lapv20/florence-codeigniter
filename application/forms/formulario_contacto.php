@@ -58,6 +58,7 @@ $submit_edit = array(
     'value' => 'Guardar Modificaciones',
     'class' => 'btn btn-success btn-block'
      );
+
 $submit_editar = array(
     'name' => 'submit',
     'type' => 'submit',
